@@ -1,0 +1,76 @@
+﻿@model ProjectModel
+
+@{
+    ViewData["Title"] = "Project Registration";
+    Layout = "/Views/Application/_ApplicationLayout.cshtml";
+}
+
+<div class="col-md-12">
+    <div class="card">
+        <!--Header-->
+        <div class="card-header card-header-info">
+            <h4 class="card-title">Register a Project</h4>
+            <p class="card-category">Put something here later.</p>
+        </div>
+        <!--Form-->
+        <div class="card-body">
+            <form asp-action="ProjectRegistration" method="post">
+                <div class="row">
+                    <!--Project Name-->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col">
+                                    <label asp-for="Name">Project Name</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <input asp-for="Name" style="width: 100%" class="summary-box" placeholder="Project Name">
+                                    <span asp-validation-for="Name" class="input-validation-error"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Version-->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col">
+                                    <label asp-for="Version">Version</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <input asp-for="Version" style="width: 100%" class="summary-box" placeholder="Project Version">
+                                    <span asp-validation-for="Version" class="input-validation-error"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!--Description-->
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col">
+                                    <label asp-for="Description">Description</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <textarea asp-for="Description" rows="5" style="width: 100%" class="description-box" placeholder="Include as much detail as possible"></textarea>
+                                    <span asp-validation-for="Description" class="input-validation-error"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-info pull-right">Register Project</button>
+                <div class="clearfix"></div>
+            </form>
+        </div>
+    </div>
+</div>

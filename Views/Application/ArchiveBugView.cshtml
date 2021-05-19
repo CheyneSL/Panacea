@@ -1,0 +1,171 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Project.Models;
+@model Bug
+
+@{
+    ViewData["Title"] = "Archive Bug Details";
+    Layout = "/Views/Application/_ApplicationLayout.cshtml";
+}
+
+<div class="box">
+    <div class="container">
+
+        <form asp-action="BugView" method="post">
+            <div class="row">
+                <!--UserName, ProjectName, BugID-->
+                <div class="col-md-4">
+                    <div class="card card-chart">
+                        <div class="card-header card-header-primary">
+                            <div>
+                                Identification Details
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <table class="table">
+                                <tr class="text-primary">
+                                    <th>Project Name</th>
+                                    <th>Bug ID</th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input asp-for="ProjectName" class="form-control" readonly />
+                                    </td>
+                                    <td>
+                                        <input asp-for="BugID" class="form-control" readonly />
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons">access_time</i> Last Modified on xxxxxxxxxx.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Classification, Priority, Severity-->
+                <div class="col-md-4">
+                    <div class="card card-chart">
+                        <div class="card-header card-header-primary">
+                            <div>
+                                Bug Type
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <table class="table">
+                                <tr class="text-primary">
+                                    <th>Classification</th>
+                                    <th>Priority</th>
+                                    <th>Severity</th>
+                                </tr>
+                                <tr>
+                                    <td><input asp-for="Classification" class="form-control" readonly /></td>
+                                    <td><input asp-for="Priority" class="form-control" readonly /></td>
+                                    <td><input asp-for="Severity" class="form-control" readonly /></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons">access_time</i> Last Modified on xxxxxxxxxx.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Environment-->
+                <div class="col-md-4">
+                    <div class="card card-chart">
+                        <div class="card-header card-header-primary">
+                            <div>
+                                Environment Details
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <textarea asp-for="Environment" class="form-control" readonly></textarea>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons">access_time</i> Last Modified on xxxxxxxxxx.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!--Summary-->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-chart">
+                        <div class="card-header card-header-primary">
+                            <div>
+                                Summary
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <input asp-for="Title" class="form-control" readonly />
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons">access_time</i> Last accessed 10 minutes ago.Last Modified on xxxxxxxxxx.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Description-->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-chart">
+                        <div class="card-header card-header-primary">
+                            <div>
+                                Full Description
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <input asp-for="Description" class="form-control" readonly />
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons">access_time</i> Last Modified on xxxxxxxxxx.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Steps To Reproduce-->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-chart">
+                        <div class="card-header card-header-primary">
+                            <div>
+                                Steps To Reproduce/ Solution
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <textarea asp-for="StepsToReproduce" rows="5" style="width: 100%; font-weight: 200" class="description-box" readonly>@Model.StepsToReproduce</textarea>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons">access_time</i> Last Modified on xxxxxxxxxx.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <input asp-for="UserID" hidden />
+            <input asp-for="ProjectID" hidden />
+            <input asp-for="Open" hidden />
+
+            <br />
+
+            <div class="col-md-12" style="text-align: center">
+                <button type="submit" name="submit" value="Delete" class="btn btn-danger" style="margin-top: 30px">Delete</button>
+            </div>
+
+        </form>
+    </div>
+</div>

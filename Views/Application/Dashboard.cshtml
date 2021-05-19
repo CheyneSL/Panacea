@@ -1,0 +1,138 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Project.Models;
+@model SingleBugViewModel
+
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "/Views/Application/_ApplicationLayout.cshtml";
+}
+
+@inject UserManager<User> UserMgr
+
+<div class="box">
+    <div class="container">
+        <div class="row">
+
+            <!--Register Project Card-->
+            <div class="col-md-4">
+                <a href="ProjectRegistration">
+                    <div class="card card-chart">
+                        <div class="card-header card-header-info">
+                            <div id="ProjectRegistraion"><img src="~/images/projectregistration.svg" style="width: 50px; height: 50px" /></div>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">Add Project</h4>
+                            <p class="card-category">
+                                <span class="text-dark"><i class="fa fa-cog"></i></span> Register an application or API currently under development.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons">access_time</i> Last Accessed 10 minutes ago
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <!--Bug Submission Card-->
+            <div class="col-md-4">
+                <a href="BugSubmission">
+                    <div class="card card-chart">
+                        <div class="card-header card-header-danger">
+                            <div class="ct-chart" id="BugSubmission"><img src="~/images/bug.svg" style="width: 50px; height: 50px" /></div>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">Submit a Bug</h4>
+                            <p class="card-category">
+                                <span class="text-dark"><i class="fa fa-cog"></i></span> Submit a new bug or issue based on industry standards.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons">access_time</i> Last accessed 10 minutes ago
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <!--Archive Card-->
+            <div class="col-md-4">
+                <a href="Archive">
+                    <div class="card card-chart">
+                        <div class="card-header card-header-success">
+                            <div class="ct-chart" id="Archive"><img src="~/images/backlog.svg" style="width: 50px; height: 50px" /></div>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">Archive</h4>
+                            <p class="card-category">
+                                <span class="text-dark"><i class="fa fa-cog"></i></span> Access closed bugs and issues for auditing.
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons">access_time</i> Last accessed 10 minutes ago
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<div class="col-md-12">
+    <div class="card">
+    
+        <div class="card-header card-header-primary">
+            <h4 class="card-title ">Backlog</h4>
+
+            <div style="background-color: white; width: 100%; border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;">
+                <form method="post">
+                    <div class="row form-group" style="margin-top: 40px">
+                        <div class="col-md-10">
+                            <input asp-for="@Model.Query" class="form-control" id="TextSearchInput" placeholder="Search Backlog" style="width: 100%"/>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <button class="btn btn-outline-primary" id="ApplyTextSearchButton">Search</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <tr class=" text-primary">
+                      <th></th>
+                      <th>BugID</th>
+                      <th>Project</th>
+                      <th>Status</th>
+                      <th>Severity</th>
+                      <th>Summary</th>
+                      </tr>
+                       @foreach (Bug bug in Model.Bugs)
+                       {
+                           <tr>
+                               <td><button class="btn btn-outline-primary">@Html.ActionLink("View", "BugView", "Application", bug)</button></td>
+                               <td class="td-custom"><b>@bug.BugID</b></td>
+                               <td class="td-custom"><b>@bug.ProjectName</b></td>
+                               <td class="td-custom"><b>Open</b></td>
+                               <td class="td-custom"><b>@bug.Severity</b></td>
+                               <td class="td-custom"><b>@bug.Title</b></td>
+                           </tr>
+                       }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

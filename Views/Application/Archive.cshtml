@@ -1,0 +1,60 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Project.Models;
+@model SingleBugViewModel
+
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "/Views/Application/_ApplicationLayout.cshtml";
+}
+
+@inject UserManager<User> UserMgr
+
+<div class="col-md-12">
+    <div class="card">
+
+        <div class="card-header card-header-success">
+            <h4 class="card-title ">Archive</h4>
+            <p>All archived bugs have been closed.</p>
+
+            <div style="background-color: white; width: 100%; border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;">
+                <form method="post">
+                    <div class="row form-group" style="margin-top: 40px">
+                        <div class="col-md-10">
+                            <input asp-for="@Model.Query" class="form-control" id="TextSearchInput" placeholder="Search Backlog" style="width: 100%" />
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <button class="btn btn-outline-success" id="ApplyTextSearchButton">Search</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <tr class=" text-success">
+                        <th></th>
+                        <th>BugID</th>
+                        <th>Project</th>
+                        <th>Status</th>
+                        <th>Severity</th>
+                        <th>Summary</th>
+                    </tr>
+                    @foreach (Bug bug in Model.Bugs.Where(b => b.Open == false))
+                    {
+                        <tr>
+                            <td><button class="btn btn-outline-success">@Html.ActionLink("View", "ArchiveBugView", "Application", bug, new { @style = "color: #4caf50" })</button></td>
+                            <td>@bug.BugID</td>
+                            <td>@bug.ProjectName</td>
+                            <td>Closed</td>
+                            <td>@bug.Severity</td>
+                            <td>@bug.Title</td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,140 @@
+﻿@model ProjectBugVM
+
+@{
+    ViewData["Title"] = "Bug Submission";
+    Layout = "/Views/Application/_ApplicationLayout.cshtml";
+}
+
+<div class="col-md-12">
+    <div class="card">
+        <!--Header-->
+        <div class="card-header card-header-danger">
+            <h4 class="card-title">Submit a Bug</h4>
+            <p class="card-category">Guidelines for submitting a bug can be found <a href="">here</a>.</p>
+        </div>
+        <!--Form-->
+        <div class="card-body">
+            <form asp-action="BugSubmission" method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <!--Project ID-->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="bmd-label-floating" asp-for="Bug.ProjectID">Project</label>
+                            <select asp-for="Bug.ProjectID" class="form-control">
+                                @foreach (ProjectModel project in Model.Projects)
+                                {
+                                    <option value="@project.ProjectID">@project.Name</option>
+                                }
+                            </select>
+                            <span asp-validation-for="Bug.ProjectID" class="input-validation-error"></span>
+                        </div>
+                    </div>
+                    <!--Classification-->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="bmd-label-floating" asp-for="Bug.Classification">Classification</label>
+                            <select asp-for="Bug.Classification" class="form-control">
+                                <option value="">Select the type</option>
+                                <option value="Usability">Usability</option>
+                                <option value="Functional">Functional</option>
+                                <option value="Security">Security</option>
+                                <option value="Performance">Performance</option>
+                                <option value="Compatibility">Compatibility</option>
+                            </select>
+                            <span asp-validation-for="Bug.Classification" class="input-validation-error"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!--Severity-->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="bmd-label-floating" asp-for="Bug.Severity">Severity</label>
+                            <select asp-for="Bug.Severity" class="form-control">
+                                <option value="">Select the severity</option>
+                                <option value="Catastrophic">Catastrophic</option>
+                                <option value="Critical">Critical</option>
+                                <option value="High">High</option>
+                                <option value="Medium">Medium</option>
+                                <option value="Low">Low</option>
+                            </select>
+                            <span asp-validation-for="Bug.Severity" class="input-validation-error"></span>
+                        </div>
+                    </div>
+                    <!--Priority-->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="bmd-label-floating" asp-for="Bug.Priority">Priority</label>
+                            <select asp-for="Bug.Priority" class="form-control">
+                                <option value="">Select a priority</option>
+                                <option value="Urgent">Urgent</option>
+                                <option value="High">High</option>
+                                <option value="Medium">Medium</option>
+                                <option value="Low">Low</option>
+                            </select>
+                            <span asp-validation-for="Bug.Priority" class="input-validation-error"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!--Environment-->
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col">
+                                    <label class="bmd-label-floating" asp-for="Bug.Environment">Environment</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <input asp-for="Bug.Environment" style="width: 100%" placeholder="Include OS, Firmware Version, & Web Browser">
+                                    <span asp-validation-for="Bug.Environment"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!--Summary-->
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col">
+                                    <label class="bmd-label-floating" asp-for="Bug.Title">Summary</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <input asp-for="Bug.Title" style="width: 100%" placeholder="Describe the bug">
+                                    <span asp-validation-for="Bug.Title" class="input-validation-error"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!--Description-->
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col">
+                                    <label class="bmd-label-floating" asp-for="Bug.Description">Description</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <textarea asp-for="Bug.Description" rows="5" style="width: 100%" class="description-box" placeholder="Include as much detail as possible"></textarea>
+                                    <span asp-validation-for="Bug.Description" class="input-validation-error"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-danger pull-right">Submit Bug</button>
+                <div class="clearfix"></div>
+            </form>
+        </div>
+    </div>
+</div>
+
